@@ -1,0 +1,22 @@
+{
+  "name": "outlawdesigns.io.accesslogparser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outlawdesigns-io/AccessLogParserJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/outlawdesigns-io/AccessLogParserJS/issues"
+  },
+  "homepage": "https://github.com/outlawdesigns-io/AccessLogParserJS#readme",
+  "dependencies": {
+    "parse-user-agent": "^1.1.1"
+  }
+}
