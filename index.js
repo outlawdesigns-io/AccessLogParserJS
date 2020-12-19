@@ -33,13 +33,13 @@ let mod = (function(){
       return false;
     },
     parseTimeZone(){
-      return logStr.match(DATEPATTERN)[2].trim() || false;
+      return logStr.match(DATEPATTERN) ? logStr.match(DATEPATTERN)[2].trim():false;
     },
     parseMethod(logStr){
-      return logStr.match(METHODPATTERN)[1].trim() || false;
+      return logStr.match(METHODPATTERN) ? logStr.match(METHODPATTERN)[1].trim():false;
     },
     parseQuery(logStr){
-      return logStr.match(QUERYPATTERN)[1].replace(QUERYREPLACE,'').trim() || false;
+      return logStr.match(QUERYPATTERN) ? logStr.match(QUERYPATTERN)[1].replace(QUERYREPLACE,'').trim():false;
     },
     parseReferrer(logStr){
       if(matches = logStr.match(REFERRERPATTERN)){
@@ -48,13 +48,13 @@ let mod = (function(){
       return false;
     },
     parseResponseCode(logStr){
-      return logStr.match(RESPONSEPATTERN)[1].trim() || false;
+      return logStr.match(RESPONSEPATTERN) ? logStr.match(RESPONSEPATTERN)[1].trim():false;
     },
     parseUserAgent(logStr){
       return parseUserAgent.parseUserAgent(logStr);
     },
     parseResponseSize(logStr){
-      return logStr.match(RESPONSESIZEPATTERN)[1].trim() || false;
+      return logStr.match(RESPONSESIZEPATTERN) ? logStr.match(RESPONSESIZEPATTERN)[1].trim():false;
     },
     parseLine(logStr){
       return {
