@@ -64,6 +64,7 @@ let mod = (function(){
         requestMethod:this.parseMethod(logStr),
         query:this.parseQuery(logStr),
         referrer:this.parseReferrer(logStr),
+        responseSize:this.parseResponseSize(logStr),
         ...this.parseUserAgent(logStr)
       }
     }
