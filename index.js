@@ -15,16 +15,16 @@ let mod = (function(){
 
   return {
     parseIp(logStr){
-      if(matches = logStr.match(LOCAHOSTPATTERN)){
+      if(logStr !== undefined && (matches = logStr.match(LOCAHOSTPATTERN))){
         return LOOPBACKADDRESS;
       }
-      if(matches = logStr.match(IPPATTERN)){
+      if(logStr !== undefined && (matches = logStr.match(IPPATTERN))){
         return matches[0].trim();
       }
       return false;
     },
     parseDate(logStr){
-      if(matches = logStr.match(DATEPATTERN)){
+      if(logStr !== undefined && (matches = logStr.match(DATEPATTERN))){
         let dateStr = matches[1].trim();
         let timePieces = dateStr.split(':');
         let datePieces = timePieces[0].split('/');
@@ -36,37 +36,40 @@ let mod = (function(){
       return logStr.match(DATEPATTERN) ? logStr.match(DATEPATTERN)[2].trim():false;
     },
     parseMethod(logStr){
-      return logStr.match(METHODPATTERN) ? logStr.match(METHODPATTERN)[1].trim():false;
+      return (logStr !== undefined && logStr.match(METHODPATTERN)) ? logStr.match(METHODPATTERN)[1].trim():false;
     },
     parseQuery(logStr){
-      return logStr.match(QUERYPATTERN) ? logStr.match(QUERYPATTERN)[1].replace(QUERYREPLACE,'').trim():false;
+      return (logStr !== undefined && logStr.match(QUERYPATTERN)) ? logStr.match(QUERYPATTERN)[1].replace(QUERYREPLACE,'').trim():false;
     },
     parseReferrer(logStr){
-      if(matches = logStr.match(REFERRERPATTERN)){
-        return 'http' + matches[1].trim() + matches[2].replace(RFERRERREPLACE,'').trim();
+      if(logStr !== undefined && (matches = logStr.match(REFERRERPATTERN))){
+        return 'http' + matches[1].trim() + "//" + matches[2].replace(RFERRERREPLACE,'').trim();
       }
       return false;
     },
     parseResponseCode(logStr){
-      return logStr.match(RESPONSEPATTERN) ? logStr.match(RESPONSEPATTERN)[1].trim():false;
+      return (logStr !== undefined && logStr.match(RESPONSEPATTERN)) ? logStr.match(RESPONSEPATTERN)[1].trim():false;
     },
     parseUserAgent(logStr){
       return parseUserAgent.parseUserAgent(logStr);
     },
     parseResponseSize(logStr){
-      return logStr.match(RESPONSESIZEPATTERN) ? logStr.match(RESPONSESIZEPATTERN)[1].trim():false;
+      return (logStr !== undefined && logStr.match(RESPONSESIZEPATTERN)) ? logStr.match(RESPONSESIZEPATTERN)[1].trim():false;
     },
     parseLine(logStr){
-      return {
-        ip_address:this.parseIp(logStr),
-        responseCode:this.parseResponseCode(logStr),
-        requestDate:this.parseDate(logStr),
-        requestMethod:this.parseMethod(logStr),
-        query:this.parseQuery(logStr),
-        referrer:this.parseReferrer(logStr),
-        responseSize:this.parseResponseSize(logStr),
-        ...this.parseUserAgent(logStr)
+      if(logStr !== undefined){
+        return {
+          ip_address:this.parseIp(logStr),
+          responseCode:this.parseResponseCode(logStr),
+          requestDate:this.parseDate(logStr),
+          requestMethod:this.parseMethod(logStr),
+          query:this.parseQuery(logStr),
+          referrer:this.parseReferrer(logStr),
+          responseSize:this.parseResponseSize(logStr),
+          ...this.parseUserAgent(logStr)
+        }
       }
+      return false;
     }
   }
 
