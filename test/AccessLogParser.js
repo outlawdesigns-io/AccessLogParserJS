@@ -1,6 +1,8 @@
 const AccessLogParser = require('../index');
 const expect = require('chai').expect;
 
+process.env.TZ = 'America/Chicago'; 
+
 let logStr = `64.128.132.200 - - [25/Aug/2021:13:01:26 -0500] "OPTIONS /song/search/album/Ravishing%20Grimness HTTP/1.1" 200 424 "https://outlawdesigns.io/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"`;
 
 describe('parseIp()',function(){
