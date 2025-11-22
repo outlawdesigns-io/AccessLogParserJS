@@ -57,7 +57,7 @@ let mod = (function(){
       return (logStr !== undefined && logStr.match(RESPONSESIZEPATTERN)) ? logStr.match(RESPONSESIZEPATTERN)[1].trim():false;
     },
     parseLine(logStr){
-      if(logStr !== undefined){
+      if(logStr !== undefined && this.parseIp(logStr) !== false){
         return {
           ip_address:this.parseIp(logStr),
           responseCode:this.parseResponseCode(logStr),

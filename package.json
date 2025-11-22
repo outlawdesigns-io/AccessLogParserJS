@@ -1,6 +1,6 @@
 {
-  "name": "outlawdesigns.io.accesslogparser",
-  "version": "1.0.3",
+  "name": "@outlawdesigns/access-log-parser",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "parse-user-agent": "^1.1.2"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
-    "mocha": "^9.1.0"
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5"
   }
 }
